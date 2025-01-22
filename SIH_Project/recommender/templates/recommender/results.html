@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Recommendations</title>
+</head>
+<body>
+    <h1>Recommended Crops</h1>
+    {% if recommendations %}
+        <ul>
+            {% for rec in recommendations %}
+                <li>
+                    <strong>{{ rec.crop }}</strong> - Score: {{ rec.score }}<br>
+                    Water Need: {{ rec.water_need }}<br>
+                    Irrigation Schedule: {{ rec.irrigation_schedule }}<br>
+                    Pesticide: {{ rec.pesticide }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recommendations found for the given criteria.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,56 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django specific files
+*.log
+*.sqlite3
+*.db
+*.db-journal
+
+# Virtual environment directories
+venv/
+env/
+.venv/
+.ENV/
+
+# IDE/editor specific files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Static and media files (if you use the `collectstatic` command)
+static/
+media/
+
+# Django settings files (if you keep them out of version control)
+settings.py
+local_settings.py
+
+# Test data or other sensitive information
+*.json
+*.csv
+*.yaml
+
+# Coverage and testing reports
+.coverage
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Migrations
+*/migrations/*.py
+*/migrations/*.pyc
+
+# Other
+*.bak
+*.swp
+*.swo
+*.swn
+Refined_India_Agri_Data_Hindi.xlsx

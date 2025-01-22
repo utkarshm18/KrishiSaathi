@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Recommendation</title>
+</head>
+<body>
+    <h1>Crop Recommendation System</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="region">Region:</label>
+        <select name="region" id="region">
+            <option value="Haryana">Haryana</option>
+            <option value="Punjab">Punjab</option>
+            <!-- Add other regions -->
+        </select><br><br>
+
+        <label for="soil_type">Soil Type:</label>
+        <select name="soil_type" id="soil_type">
+            <option value="Loamy">Loamy</option>
+            <option value="Clayey">Clayey</option>
+            <!-- Add other soil types -->
+        </select><br><br>
+
+        <label for="season">Season:</label>
+        <select name="season" id="season">
+            <option value="Kharif">Kharif</option>
+            <option value="Rabi">Rabi</option>
+            <!-- Add other seasons -->
+        </select><br><br>
+
+        <button type="submit">Get Recommendations</button>
+    </form>
+</body>
+</html>

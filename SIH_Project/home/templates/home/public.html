@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General Public Portal</title>
+  <link rel="stylesheet" href="pstyle.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    header {
+      position: relative;
+      background-image: url("/static/home/images/dam.jpg");
+      background-size: cover;
+      background-position: center;
+      color: rgb(252, 249, 249);
+      padding: 20px;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(92, 111, 205, 0.5);
+      margin-bottom: 0;
+      z-index: 10;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.4);
+      z-index: 1;
+    }
+
+    header h1 {
+      position: relative;
+      z-index: 2;
+    }
+
+    .language-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+
+    .left-side {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      background-color: #e9f0f5;
+      border-radius: 10px;
+    }
+
+    .tile-button {
+      background-color: #10b397;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .tile-button:hover {
+      background-color: #0d8a7f;
+    }
+
+    .right-side {
+      width: 65%;
+      padding: 20px;
+      background-color: #ffffff;
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .right-side h2 {
+      color: #24c9c9;
+      font-size: 2em;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .footer-links {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      display: inline;
+      margin: 0 10px;
+    }
+
+    .footer-links a {
+      color: #1e90ff;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-contact {
+      margin-top: 10px;
+    }
+
+    .footer-contact a {
+      color: #1e90ff;
+      text-decoration: none;
+    }
+
+    .footer-contact a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      background-color: #222;
+      padding: 10px 0;
+      margin-top: 20px;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999; /* Ensure it appears above other content */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 70%; /* Adjust width of the modal */
+      max-width: 600px; /* Adjust maximum width */
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Style for iframe within the modal */
+    iframe {
+      width: 100%;
+      height: 500px; /* Adjust height as needed */
+      border: none;
+    }
+  </style>
+  <script>
+    // JavaScript function to change the language of the entire website
+    function changeLanguage(language) {
+      const content = {
+        en: {
+          title: "Welcome to the General Public Portal",
+          groundwaterPrediction: "Ground Water Prediction",
+          dataVisualization: "Data Visualization of Future",
+          infrastructureReservoir: "Infrastructure and Reservoir",
+          farmerSituation: "Current Farmer Situation",
+          text: "Farmers are facing numerous challenges in today's world, including climate change, soil degradation, water scarcity, and market volatility. Sustainable practices are becoming essential to maintain soil fertility and ensure crop productivity. Understanding the changing patterns and making data-driven decisions are key to improving yield and sustaining agriculture.",
+          footer: "Important Agriculture Resources:"
+        },
+        hi: {
+          title: "सार्वजनिक पोर्टल में आपका स्वागत है",
+          groundwaterPrediction: "भूजल भविष्यवाणी",
+          dataVisualization: "भविष्य का डेटा दृश्य",
+          infrastructureReservoir: "बुनियादी ढांचा और जलाशय",
+          farmerSituation: "वर्तमान किसान स्थिति",
+          text: "किसान आज की दुनिया में कई चुनौतियों का सामना कर रहे हैं, जिनमें जलवायु परिवर्तन, मृदा क्षरण, जल की कमी, और बाजार की अस्थिरता शामिल हैं। मृदा की उर्वरता बनाए रखने और फसल की उत्पादकता सुनिश्चित करने के लिए सतत कृषि पद्धतियाँ अत्यंत आवश्यक होती जा रही हैं। बदलते पैटर्न को समझना और डेटा-आधारित निर्णय लेना, उपज को बेहतर बनाने और कृषि को टिकाऊ बनाने की कुंजी है।",
+          footer: "महत्वपूर्ण कृषि संसाधन:"
+        }
+        // Add other languages as needed...
+      };
+
+      document.querySelector("header h1").innerText = content[language].title;
+      document.querySelector(".tile-button:nth-child(1)").innerText = content[language].groundwaterPrediction;
+      document.querySelector(".tile-button:nth-child(2)").innerText = content[language].dataVisualization;
+      document.querySelector(".tile-button:nth-child(3)").innerText = content[language].infrastructureReservoir;
+      document.querySelector(".right-side h2").innerText = content[language].farmerSituation;
+      document.getElementById("public-text").innerText = content[language].text;
+      document.querySelector("footer h3").innerText = content[language].footer;
+    }
+
+    // JavaScript function to open and close the chatbot modal
+    function openChatbot() {
+      document.getElementById("chatbot-modal").style.display = "block";
+    }
+
+    function closeChatbot() {
+      document.getElementById("chatbot-modal").style.display = "none";
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the General Public Portal</h1>
+    <!-- Language Toggle Button -->
+    <div class="language-toggle">
+      <select onchange="changeLanguage(this.value)">
+        <option value="en">Language (English)</option>
+        <option value="hi">भाषा (Hindi)</option>
+        <!-- Add more languages as needed -->
+      </select>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="left-side">
+      <button class="tile-button">Ground Water Prediction</button>
+      <button class="tile-button">Data Visualization of Future</button>
+      <button class="tile-button">Infrastructure and Reservoir</button>
+      <!-- Chatbot Button -->
+      <button class="tile-button" onclick="openChatbot()">Chatbot</button>
+    </div>
+    <div class="right-side">
+      <h2>Current Situations of different Infrastructure</h2>
+      <p id="public-text">
+        Current Situation of Dams, Reservoirs, and Rivers:
+
+        The current state of infrastructure related to dams, reservoirs, and rivers is increasingly complex and challenging, influenced by factors such as climate change, aging structures, siltation, and shifting water demands. Many dams and reservoirs across the globe are facing significant issues related to sedimentation, which reduces their storage capacity and impacts water supply for irrigation, drinking, and industrial use. Aging infrastructure, particularly in regions like North America and Asia, presents safety concerns, necessitating urgent repairs, retrofitting, or decommissioning. Additionally, erratic weather patterns, driven by climate change, have intensified droughts and floods, affecting river flows and the stability of these structures. Rivers, which serve as lifelines for many communities, are experiencing altered flow patterns due to changing precipitation rates, dam constructions, and over-extraction, leading to reduced water quality and ecological degradation. There is an increasing push for sustainable water management practices, enhanced monitoring systems, and adaptive strategies to address these challenges and ensure the long-term viability and safety of water infrastructure..
+      </p>
+    </div>
+  </div>
+
+  <!-- Chatbot Modal -->
+  <div id="chatbot-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeChatbot()">&times;</span>
+      <iframe
+        src="https://www.chatbase.co/chatbot-iframe/fGlQIzzOrf0c6JZEP_n08"
+        width="100%"
+        style="height: 500px;" <!-- Adjusted height for the iframe -->
+        frameborder="0"
+      ></iframe>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <h3>Important Resources for Infrastructure and Reservoir Management:</h3>
+      <ul class="footer-links">
+        <li><a href="https://cwc.gov.in/" target="_blank">Central Water Commission (CWC)</a></li>
+        <li><a href="https://www.nhp.mowr.gov.in/" target="_blank">National Hydrology Project (NHP)</a></li>
+        <li><a href="https://indiawris.gov.in/" target="_blank">India-WRIS (Water Resources Information System)</a></li>
+        <li><a href="https://www.damsafety.in/" target="_blank">Dam Safety Organization</a></li>
+        <li><a href="https://www.indiaenvironmentportal.org.in/" target="_blank">India Environment Portal</a></li>
+      </ul>
+      <div class="footer-contact">
+        <p>Contact Us: <a href="mailto:info@watermanagement.org">info@watermanagement.org</a></p>
+        <p>Phone: +91-1234567890</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Water Management Authority. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Map</title>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/groundwater.css' %}">
+
+</head>
+<style>
+    a:link {
+        color: green;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:visited {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:hover {
+        color: white;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:active {
+        color: yellow;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+</style>
+  
+
+<body>
+    
+    <div class="main_text">
+        <h1>Present Ground Water level of India</h1>
+    </div>
+
+    <main id="main">
+       
+        <div id="data-table">
+            <h2>Groundwater Data</h2>
+            <table>
+                <tr>
+                    <th>State</th>
+                    <th>Water-level</th>
+                </tr>
+                <!-- JavaScript will generate rows here -->
+            </table>
+        </div>
+
+        <div id="visualization"></div>
+      
+        <script>
+            google.load('visualization', '1', { 'packages': ['geochart'] });
+            google.setOnLoadCallback(drawVisualization);
+
+            function drawVisualization() {
+                var data = google.visualization.arrayToDataTable([
+                    ['State Code', 'State', 'Prediction'],
+                    ['IN-AP', 'Andhra Pradesh', 33.26],
+                    ['IN-AR', 'Arunachal Pradesh', 0.36],
+                    ['IN-AS', 'Assam', 11.73],
+                    ['IN-BR', 'Bihar', 51.14],
+                    ['IN-CH', 'Chandigarh', 80.6],
+                    ['IN-DL', 'Delhi', 101.4],
+                    ['IN-KA', 'Karnataka', 64.85],
+                    ['IN-KL', 'Kerala', 51.68],
+                    ['IN-LD', 'Lakshadweep', 58.47],
+                    ['IN-LA', 'Ladakh', 17.9],
+                    ['IN-DN', 'Dadara & Nagar Havelli', 45.99],
+                    ['IN-CT', 'Chhattisgarh', 46.34],
+                    ['IN-JK', 'Jammu & Kashmir', 21.03],
+                    ['IN-MN', 'Manipur', 5.12],
+                    ['IN-MP', 'Madhya Pradesh', 56.82],
+                    ['IN-MZ', 'Mizoram', 3.81],
+                    ['IN-NL', 'Nagaland', 1.04],
+                    ['IN-OR', 'Odisha', 43.65],
+                    ['IN-PB', 'Punjab', 164.42],
+                    ['IN-PY', 'Puducherry', 74.27],
+                    ['IN-RJ', 'Rajasthan', 150.22],
+                    ['IN-GA', 'Goa', 23.48],
+                    ['IN-GJ', 'Gujarat', 53.39],
+                    ['IN-HP', 'Himachal Pradesh', 36.83],
+                    ['IN-JH', 'Jharkhand', 29.13],
+                    ['IN-ML', 'Meghalaya', 4.22],
+                    ['IN-SK', 'Sikkim', 0.86],
+                    ['IN-TR', 'Tripura', 7.94],
+                    ['IN-UT', 'Uttarakhand', 46.8],
+                    ['IN-UP', 'Uttar Pradesh', 68.83],
+                    ['IN-WB', 'West Bengal', 44.6],
+                    ['IN-AN', 'Andaman & Nicobar Island', 2.6],
+                    ['IN-DD', 'Daman & Diu', 113.38],
+                    ['IN-HR', 'Haryana', 134.56],
+                    ['IN-TN', 'Tamil Nadu', 82.93],
+                    ['IN-MH', 'Maharashtra', 54.99],
+                    ['IN-TG', 'Telangana', 53.32]
+                ]);
+
+                // Sort the data by prediction value in descending order
+                data.sort([{ column: 2, desc: true }]);
+
+                var tableRows = '';
+                for (var i = 0; i < data.getNumberOfRows(); i++) {
+                    tableRows += '<tr>';
+                    tableRows += '<td>' + data.getValue(i, 1) + '</td>';
+                    tableRows += '<td>' + data.getValue(i, 2) + '</td>';
+                    tableRows += '</tr>';
+                }
+
+                document.querySelector('#data-table table').innerHTML += tableRows;
+
+                var opts = {
+                    region: 'IN',
+                    domain: 'IN',
+                    displayMode: 'regions',
+                    colorAxis: { colors: ['#008000', '#FFFF00','FFA500','FF6600', '#FF471A'] },
+                    resolution: 'provinces',
+                    backgroundColor: '#81d4fa',
+                    defaultColor: '#f5f5f5',
+                    width: 940,
+                    height: 680,
+                };
+
+                var geochart = new google.visualization.GeoChart(
+                    document.getElementById('visualization')
+                );
+
+                geochart.draw(data, opts);
+            };
+
+    
+        </script>
+        
+    </main>
+    <div class="about-p">
+        <div id="one" class="box">
+            <h1>Ratio <= 120  Red Zone</h1>
+            <p>A "higher scarcity state," exceeding 120%, denotes critical resource limitations, labeled the "red zone." This intensifies demand-supply imbalances, triggering price hikes, rationing measures, and regulatory interventions. Innovation and conservation efforts arise to manage shortages, while social impacts may exacerbate inequalities and geopolitical tensions.</p>
+        </div>
+        <div id="two" class="box">
+            <h1>Ratio > 120 < 80 Yellow Zone</h1>
+            <p>
+                In the "yellow zone," below 120% but above 70%, resource scarcity signals a heightened caution level. It prompts monitoring for potential shortages, encouraging preemptive measures such as efficiency improvements and contingency planning. Addressing issues in this zone preemptively can help avert escalation into critical red zone scenarios.</p>
+        </div>
+        <div id="three" class="box">
+            <h1>Ratio => 70 Green Zone</h1>
+            <p>In the "green zone," with ration levels below 70%, resources are relatively abundant, fostering stability and ease of access. This zone allows for proactive investment in infrastructure, innovation, and sustainable practices to maintain resource resilience. Leveraging this abundance responsibly ensures continued socio-economic development and environmental stewardship.</p>
+        </div>
+    </div>
+</body>
+
+</html>

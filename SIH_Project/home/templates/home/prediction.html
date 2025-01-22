@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/prediction.css' %}">
+</head>
+
+<body>
+    
+    <div class="main">
+        <div class="leftcontainer">
+            
+            <div class="border">
+
+                <h1>Prediction Results</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="entry">
+                        <label for="state">Enter the state name:</label>
+                        <br>
+                        <input type="text" id="state" name="state">
+                        <br>
+                        <label for="year">Enter future year for prediction:</label>
+                        <br>
+                        <input type="number" id="year" name="year">
+                        <br>
+                        <button type="submit">Predict</button>
+                    </form>
+                    <br>
+                </div>
+        </div>
+        <div class="result">
+            {% if prediction_results %}
+            <h2>Prediction for {{ prediction_results.state }} in {{ prediction_results.future_year }}</h2>
+            <p id="po1">Prediction for Net Groundwater Availability:</p> <div class="out"> {{ prediction_results.future_net_availability }}</div>
+            <p id="po2">Prediction for Stage of Groundwater Development (%):</p> <br> <div class="out">{{ prediction_results.future_stage_development }}</div>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

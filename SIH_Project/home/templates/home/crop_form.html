@@ -1,0 +1,52 @@
+<!-- home/templates/home/crop_form.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Recommendation Form</title>
+</head>
+<body>
+    <h1>Crop Recommendation Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="region">Region:</label>
+        <select id="region" name="region" required>
+            {% for region in regions %}
+                <option value="{{ region }}" {% if region == selected_region %}selected{% endif %}>{{ region }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label for="soil_type">Soil Type:</label>
+        <select id="soil_type" name="soil_type" required>
+            {% for soil_type in soil_types %}
+                <option value="{{ soil_type }}" {% if soil_type == selected_soil_type %}selected{% endif %}>{{ soil_type }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label for="season">Season:</label>
+        <select id="season" name="season" required>
+            {% for season in seasons %}
+                <option value="{{ season }}" {% if season == selected_season %}selected{% endif %}>{{ season }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    {% if recommendations %}
+        <h2>Recommendations:</h2>
+        <ul>
+            {% for rec in recommendations %}
+                <li>
+                    Crop: {{ rec.crop }}, Score: {{ rec.score }}, Water Need: {{ rec.water_need }},
+                    Irrigation Schedule: {{ rec.irrigation_schedule }}, Pesticide: {{ rec.pesticide }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recommendations available.</p>
+    {% endif %}
+</body>
+</html>

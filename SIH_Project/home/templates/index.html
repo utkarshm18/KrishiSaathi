@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishi Sathi</title>
+    <link rel="stylesheet" href="{% static 'styles_index.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static 'images/Krishi Sathi Logo.jpg' %}" alt="Krishi Sathi Logo">
+                </a>
+            </div>
+            
+            <div class="navigation">
+                <ul>
+                    <li><a href="#" class="lang-en">Home</a><a href="#" class="lang-hi">मुख्य पृष्ठ</a></li>
+                    <li><a href="#" class="lang-en">Farmer</a><a href="#" class="lang-hi">किसान</a></li>
+                    <li><a href="#" class="lang-en">Public</a><a href="#" class="lang-hi">जनता</a></li>
+                    <li><a href="#" class="lang-en">Priorities</a><a href="#" class="lang-hi">प्राथमिकताएँ</a></li>
+                    <li><a href="#" class="lang-en">Help</a><a href="#" class="lang-hi">सहायता</a></li>
+                </ul>
+            </div>
+
+            <div class="language-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="toggle-language">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="notification-bar">
+        <p class="lang-en">Existing Command Area in Response to Shifting of Agricultural Practices</p>
+        <p class="lang-hi">कृषि पद्धतियों में बदलाव के जवाब में मौजूदा कमांड क्षेत्र</p>
+    </div>
+
+    <section class="main-content">
+        <img src="{% static 'images/w.jpg' %}" alt="Agriculture Image">
+        <div class="overlay-text">
+            <h1>
+                <span class="lang-en">“Empowering Agriculture, Enriching Lives – Welcome to Krishi Saathi!”</span>
+                <span class="lang-hi">"कृषि को सशक्त बनाना, जीवन को समृद्ध बनाना - कृषि साथी में आपका स्वागत है!”</span>
+            </h1>
+        </div>
+    </section>
+
+    <section class="priorities">
+        <h2>
+            <span class="lang-en">Our Priorities</span>
+            <span class="lang-hi">हमारी प्राथमिकताएँ</span>
+        </h2>
+        <div class="priorities-container">
+            <div class="priority">
+                <a href="{% url 'farmer_page' %}">
+                    <img src="{% static 'images/cl.jpg' %}" alt="Addressing Climate Change">
+                    <span class="lang-en">Farmer</span>
+                    <span class="lang-hi">किसान</span>
+                </a>
+            </div>
+            <div class="priority">
+                <a href="{% url 'public_page' %}">
+                    <img src="{% static 'images/su.jpg' %}" alt="Sustainability">
+                    <span class="lang-en">Public</span>
+                    <span class="lang-hi">जनता</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="blog-posts">
+        <div class="post">
+            <img src="{% static 'images/ws.jpg' %}" alt="Water Scarcity">
+            <h3 class="lang-en">Water Scarcity</h3>
+            <h3 class="lang-hi">जल संकट</h3>
+            <p class="lang-en">Reduced water storage capacity and availability due to siltation and climate-induced changes.</p>
+            <p class="lang-hi">गाद और जलवायु-प्रेरित परिवर्तनों के कारण जल भंडारण क्षमता और उपलब्धता में कमी।</p>
+        </div>
+        <div class="post">
+            <img src="{% static 'images/uw.jpg' %}" alt="Inefficient Water Distribution">
+            <h3 class="lang-en">Inefficient Water Distribution</h3>
+            <h3 class="lang-hi">अप्रभावी जल वितरण</h3>
+            <p class="lang-en">Inadequate water management systems leading to wastage and uneven distribution across command areas.</p>
+            <p class="lang-hi">अपर्याप्त जल प्रबंधन प्रणालियाँ, जो बर्बादी और कमांड क्षेत्रों में असमान वितरण का कारण बनती हैं।</p>
+        </div>
+        <div class="post">
+            <img src="{% static 'images/yv.jpg' %}" alt="Unpredictable Agricultural Yields">
+            <h3 class="lang-en">Unpredictable Agricultural Yields</h3>
+            <h3 class="lang-hi">अप्रत्याशित कृषि उत्पादन</h3>
+            <p class="lang-en">Shifting cropping patterns and unreliable water supply affecting crop productivity and farmers' livelihoods.</p>
+            <p class="lang-hi">फसल पैटर्न में बदलाव और अविश्वसनीय जल आपूर्ति, जो फसल उत्पादकता और किसानों की आजीविका को प्रभावित करती है।</p>
+        </div>
+        <div class="post">
+            <img src="{% static 'images/add.jpg' %}" alt="Infrastructure Vulnerability">
+            <h3 class="lang-en">Infrastructure Vulnerability</h3>
+            <h3 class="lang-hi">बुनियादी ढांचे की संवेदनशीलता</h3>
+            <p class="lang-en">Aging dams and reservoirs at risk of structural failure under changing environmental and climatic conditions.</p>
+            <p class="lang-hi">पर्यावरणीय और जलवायु परिस्थितियों में बदलाव के तहत संरचनात्मक विफलता के जोखिम पर पुराने बांध और जलाशय।</p>
+        </div>
+    </section>
+
+    <section class="help-section">
+        <h2>
+            <span class="lang-en">How Can We Solve?</span>
+            <span class="lang-hi">हम इसे कैसे हल कर सकते हैं?</span>
+        </h2>
+        <div class="help-container">
+            <div class="help-item">
+                <h3 class="lang-en">Prediction</h3>
+                <h3 class="lang-hi">पूर्वानुमान</h3>
+                <p class="lang-en">Develop predictive modeling and decision support systems (DSS) to forecast hydrological impacts and optimize water management strategies.</p>
+                <p class="lang-hi">जल विज्ञान प्रभावों का पूर्वानुमान लगाने और जल प्रबंधन रणनीतियों को अनुकूलित करने के लिए भविष्यवाणी मॉडलिंग और निर्णय समर्थन प्रणाली (DSS) विकसित करें।</p>
+            </div>
+            <div class="help-item">
+                <h3 class="lang-en">Real-time Monitoring</h3>
+                <h3 class="lang-hi">वास्तविक समय निगरानी</h3>
+                <p class="lang-en">Implement IoT sensors and remote sensing to track water levels, soil moisture, and crop health in real-time.</p>
+                <p class="lang-hi">जल स्तर, मिट्टी की नमी और फसल स्वास्थ्य को वास्तविक समय में ट्रैक करने के लिए IoT सेंसर और रिमोट सेंसिंग को लागू करें।</p>
+            </div>
+            <div class="help-item">
+                <h3 class="lang-en">Resource Optimization</h3>
+                <h3 class="lang-hi">संसाधन अनुकूलन</h3>
+                <p class="lang-en">Optimize reservoir operations and irrigation scheduling using advanced algorithms to enhance water efficiency.</p>
+                <p class="lang-hi">जल दक्षता बढ़ाने के लिए उन्नत एल्गोरिदम का उपयोग करके जलाशय संचालन और सिंचाई अनुसूची का अनुकूलन करें।</p>
+            </div>
+            <div class="help-item">
+                <h3 class="lang-en">AI Integration</h3>
+                <h3 class="lang-hi">एआई एकीकरण</h3>
+                <p class="lang-en">Utilize machine learning for predictive analytics and AI-based optimization to dynamically adjust water distribution.</p>
+                <p class="lang-hi">भविष्य कहनेवाला विश्लेषण और एआई-आधारित अनुकूलन के लिए मशीन लर्निंग का उपयोग करें ताकि जल वितरण को गतिशील रूप से समायोजित किया जा सके।</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured">
+        <h2>
+            <span class="lang-en">Future Goals</span>
+            <span class="lang-hi">भविष्य के लक्ष्य</span>
+        </h2>
+        <div class="featured-container">
+            <div class="featured-item">
+                <h3 class="lang-en">Advanced Climate Modeling</h3>
+                <h3 class="lang-hi">उन्नत जलवायु मॉडलिंग</h3>
+                <p class="lang-en">Incorporate sophisticated climate models to improve long-term predictions of water availability and agricultural needs.</p>
+                <p class="lang-hi">जल उपलब्धता और कृषि आवश्यकताओं की दीर्घकालिक भविष्यवाणियों को बेहतर बनाने के लिए परिष्कृत जलवायु मॉडल को शामिल करें।</p>
+            </div>
+            <div class="featured-item">
+                <h3 class="lang-en">Infrastructure Resilience</h3>
+                <h3 class="lang-hi">बुनियादी ढांचा लचीलापन</h3>
+                <p class="lang-en">Strengthen infrastructure against future climate threats and ensure continuous agricultural productivity.</p>
+                <p class="lang-hi">भविष्य के जलवायु खतरों के खिलाफ बुनियादी ढांचे को मजबूत करें और निरंतर कृषि उत्पादकता सुनिश्चित करें।</p>
+            </div>
+            <div class="featured-item">
+                <h3 class="lang-en">Scalability</h3>
+                <h3 class="lang-hi">मापनीयता</h3>
+                <p class="lang-en">Expand successful pilot projects across wider geographic areas, ensuring the scalability of solutions.</p>
+                <p class="lang-hi">समाधानों की मापनीयता सुनिश्चित करते हुए, व्यापक भौगोलिक क्षेत्रों में सफल पायलट परियोजनाओं का विस्तार करें।</p>
+            </div>
+        </div>
+    </section>
+    
+    <script src="{% static 'scripts_index.js' %}"></script>
+</body>
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We are dedicated to providing the best services and solutions to our customers.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: info@example.com</p>
+            <p>Phone: +123 456 7890</p>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
+                <a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter"></a>
+                <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+</footer>
+</html>

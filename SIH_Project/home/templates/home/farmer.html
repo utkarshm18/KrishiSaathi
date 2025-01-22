@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farmer Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    header {
+      background-image: url("{% static 'home/images/ffarmer.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 20px;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .language-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+
+    .left-side {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      background-color: #e9f5e9;
+      border-radius: 10px;
+    }
+
+    .tile-button {
+      background-color: #6b8e23;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .tile-button:hover {
+      background-color: #556b2f;
+    }
+
+    .right-side {
+      width: 65%;
+      padding: 20px;
+      background-color: #ffffff;
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .right-side h2 {
+      color: #6b8e23;
+      font-size: 2em;
+    }
+
+    footer {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #6b8e23;
+      color: white;
+      text-align: center;
+    }
+
+    footer a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hide the chatbot iframe initially and set a smaller size */
+    #chatbot-container {
+      display: none;
+      margin-top: 20px;
+      width: 400px; /* Set a smaller width */
+      height: 500px; /* Set a smaller height */
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 0 auto; /* Center align */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #chatbot-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+  <script>
+    // JavaScript function to change the language of the entire website
+    function changeLanguage(language) {
+      const content = {
+        en: {
+          title: "Welcome to the Farmer's Portal",
+          cropRecommendation: "Crop Recommendation",
+          sustainablePractice: "Sustainable Agricultural Practice",
+          soilFertility: "Soil Fertility Prediction",
+          farmerSituation: "Current Farmer Situation",
+          text: "Farmers are facing numerous challenges in today's world, including climate change, soil degradation, water scarcity, and market volatility. Sustainable practices are becoming essential to maintain soil fertility and ensure crop productivity.",
+          footer: "Important Agriculture Resources:",
+          mkisan: "mKisan - SMS Portal for Farmers",
+          pmfby: "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+          agrisnet: "AGRISNET - Agriculture Information System Network"
+        },
+        hi: {
+          title: "किसान पोर्टल में आपका स्वागत है",
+          cropRecommendation: "फसल सिफारिश",
+          sustainablePractice: "टिकाऊ कृषि पद्धति",
+          soilFertility: "मृदा उर्वरता भविष्यवाणी",
+          farmerSituation: "वर्तमान किसान स्थिति",
+          text: "किसान आज की दुनिया में कई चुनौतियों का सामना कर रहे हैं, जिनमें जलवायु परिवर्तन, मृदा क्षरण, जल की कमी, और बाजार की अस्थिरता शामिल हैं। मृदा की उर्वरता बनाए रखने और फसल की उत्पादकता सुनिश्चित करने के लिए सतत कृषि पद्धतियाँ अत्यंत आवश्यक होती जा रही हैं।",
+          footer: "महत्वपूर्ण कृषि संसाधन:",
+          mkisan: "mKisan - किसानों के लिए एसएमएस पोर्टल",
+          pmfby: "प्रधानमंत्री फसल बीमा योजना (PMFBY)",
+          agrisnet: "AGRISNET - कृषि सूचना प्रणाली नेटवर्क"
+        }
+      };
+
+      document.querySelector("header h1").innerText = content[language].title;
+      document.querySelector(".tile-button:nth-child(1)").innerText = content[language].cropRecommendation;
+      document.querySelector(".tile-button:nth-child(2)").innerText = content[language].sustainablePractice;
+      document.querySelector(".tile-button:nth-child(3)").innerText = content[language].soilFertility;
+      document.querySelector(".right-side h2").innerText = content[language].farmerSituation;
+      document.getElementById("farmer-text").innerText = content[language].text;
+
+      // Update footer content
+      document.querySelector("footer h3").innerText = content[language].footer;
+      document.getElementById("mkisan-link").innerText = content[language].mkisan;
+      document.getElementById("pmfby-link").innerText = content[language].pmfby;
+      document.getElementById("agrisnet-link").innerText = content[language].agrisnet;
+    }
+
+    // JavaScript function to toggle the chatbot iframe
+    function toggleChatbot() {
+      const chatbotContainer = document.getElementById("chatbot-container");
+      chatbotContainer.style.display = chatbotContainer.style.display === "none" ? "block" : "none";
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Farmer's Portal</h1>
+    <div class="language-toggle">
+      <select onchange="changeLanguage(this.value)">
+        <option value="en">Language (English)</option>
+        <option value="hi">भाषा (Hindi)</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="left-side">
+      <button class="tile-button">Crop Recommendation</button>
+      <button class="tile-button">Sustainable Agricultural Practice</button>
+      <!-- Modified button to call toggleChatbot() function -->
+      <button class="tile-button" onclick="toggleChatbot()">Chatbot</button>
+    </div>
+    <div class="right-side">
+      <h2>Current Farmer Situation</h2>
+      <p id="farmer-text">
+        Farmers are facing numerous challenges in today's world, including climate change, soil degradation, water scarcity, and market volatility. Sustainable practices are becoming essential to maintain soil fertility and ensure crop productivity.
+      </p>
+    </div>
+  </div>
+
+  <!-- Chatbot container -->
+  <div id="chatbot-container">
+    <iframe
+      id="chatbot-iframe"
+      src="https://www.chatbase.co/chatbot-iframe/Vrl1lOhk2Ch0B4fA7N9QN"
+    ></iframe>
+  </div>
+
+  <footer>
+    <h3>Important Agriculture Resources:</h3>
+    <ul>
+      <li><a id="mkisan-link" href="https://mkisan.gov.in/" target="_blank">mKisan - SMS Portal for Farmers</a></li>
+      <li><a id="pmfby-link" href="https://pmfby.gov.in/" target="_blank">Pradhan Mantri Fasal Bima Yojana (PMFBY)</a></li>
+      <li><a id="agrisnet-link" href="https://agrisnet.gov.in/" target="_blank">AGRISNET - Agriculture Information System Network</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
